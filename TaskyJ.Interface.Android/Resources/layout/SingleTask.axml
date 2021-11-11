@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+				<Button
+						android:text="Save"
+						android:layout_width="100.0dp"
+						android:layout_height="50.0dp"
+						android:id="@+id/cmdSave" />
+				<Button
+						android:text="Delete"
+						android:layout_width="100.0dp"
+						android:layout_height="50.0dp"
+						android:id="@+id/cmdDelete" />
+				<Button
+						android:text="Cancel"
+						android:layout_width="100.0dp"
+						android:layout_height="50.0dp"
+						android:id="@+id/cmdCancel" />
+		</LinearLayout>
+		<ScrollView
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+				<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+						<ImageView
+								android:layout_width="80dp"
+								android:layout_height="80dp"
+								
+								android:id="@+id/ivwCategory" />
+						<TextView
+								android:text="ID"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/IDLabel" />
+						<EditText
+								android:inputType="none"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/ID"
+								android:enabled="false" />
+						<TextView
+								android:text="Category"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/CategoryLabel" />
+						<Spinner
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/spnCategory" />
+						<TextView
+								android:text="Name"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/NameLabel" />
+						<EditText
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/Name" />
+						<TextView
+								android:text="Description"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/DescriptionLabel" />
+						<EditText
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:gravity="left|top"
+								android:id="@+id/Description"
+								android:lines="4" />
+						<TextView
+								android:text="Creation Date"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/CreationDateLabel" />
+						<EditText
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/CreationDate"
+								android:editable="false" />
+						<TextView
+								android:text="Priority"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/PriorityLabel" />
+						<Spinner
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/spnPriority" />
+						<TextView
+								android:text="% Completed"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/CompletedLabel" />
+						<NumberPicker
+								android:orientation="vertical"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:solidColor="@android:color/background_dark"
+								android:id="@+id/nbpCompleted" />
+						<CheckBox
+								android:text="Specify Deadline"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:id="@+id/chkSpecifyDeadline" />
+						<DatePicker
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:id="@+id/pckDate"
+								android:visibility="gone"
+								android:calendarViewShown="false" />
+						<TimePicker
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:visibility="gone"
+								android:id="@+id/pckTime" />
+				</LinearLayout>
+		</ScrollView>
+</LinearLayout>

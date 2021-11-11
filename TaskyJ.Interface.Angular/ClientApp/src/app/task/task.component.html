@@ -1,0 +1,76 @@
+{{ loaded ? (currenttask ? "" : "task not found") : "loading..." }}
+<img *ngIf="!loaded" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+<div class="row" *ngIf="currenttask != null">
+  <div class="col-md" *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      
+      <div class="col-md-10">
+        <label for="id">ID</label>
+        <input class="form-control" formControlName="id" readonly="readonly" placeholder="" #id />
+      </div>
+      <div class="col-md-10">
+        <label for="name">Name</label>
+        <input [ngClass]="(form.controls.name.errors && (form.controls.name.touched||form.controls.name.dirty))?'alert alert-danger':'form-control'"
+               formControlName="name" placeholder="task name" #name />
+        <div *ngIf="(form.controls.name.errors && (form.controls.name.touched||form.controls.name.dirty))" class="text-danger">
+          This field is mandatory
+        </div>
+      </div>
+      <div class="col-md-10">
+        <label for="description">Description</label>
+        <input [ngClass]="(form.controls.description.errors && (form.controls.description.touched||form.controls.description.dirty))?'alert alert-danger':'form-control'"
+               formControlName="description" placeholder="task description" #description />
+        <div *ngIf="(form.controls.description.errors && (form.controls.description.touched||form.controls.description.dirty))" class="text-danger">
+          This field is mandatory
+        </div>
+      </div>
+      <div class="col-md-10">
+        <label for="creationDate">Creation Date</label>
+        <input class="form-control" readonly="readonly" placeholder="" formControlName="creationDate" #creationDate />
+      </div>
+      <div class="col-md-10">
+        <label for="deadline">Deadline</label>
+        <input class="form-control" type="datetime-local" formControlName="deadline" #deadline />
+        <div *ngIf="(form.controls.deadline.errors && (form.controls.deadline.touched||form.controls.deadline.dirty))" class="text-danger">
+          Wrong date
+        </div>
+      </div>
+      <div class="col-md-10">
+        <label for="name">Finish Date</label>
+        <input type="datetime-local" [ngClass]="(form.controls.finishDate.errors && (form.controls.finishDate.touched||form.controls.finishDate.dirty))?'alert alert-danger':'form-control'"
+               formControlName="finishDate" #finishDate />
+        <div *ngIf="(form.controls.finishDate.errors && (form.controls.finishDate.touched||form.controls.finishDate.dirty))" class="text-danger">
+          Wrong date
+        </div>
+      </div>
+      <div class="col-md-10">
+        <label for="priority">Priority</label>
+        <br />
+        <select formControlName="priority" #priority>
+          <option *ngFor="let prio of prioritieslist" [value]="prio.id">
+            {{prio.name}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-10">
+        <label for="idCategory">Category</label>
+        <br />
+        <select formControlName="idCategory" #idCategory>
+          <option *ngFor="let categ of categorieslist" [value]="categ.id">
+            {{categ.name}}
+          </option>
+        </select>
+        <div style="float: right" *ngIf="categorieslist && idCategory.selectedIndex > 0">
+          <img src="{{'data:image/png;base64,' + categorieslist[idCategory.selectedIndex].iconBase64}}" />
+        </div>
+      </div>
+    </form>
+  </div>
+    <div class="col-md">
+      <h2>Actions</h2>
+      <p><button class="form-control" (click)="onSubmit()">OK</button></p>
+      <p><button class="form-control" (click)="resetCurrentTask()">Reset</button></p>
+      <p><button class="btn btn-danger" (click)="delete()">Delete</button></p>
+      <p><button class="btn btn-primary" (click)="back()">Back</button></p>
+    </div>  
+</div>

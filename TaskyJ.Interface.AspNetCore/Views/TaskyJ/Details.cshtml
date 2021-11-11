@@ -1,0 +1,74 @@
+﻿@using TaskyJ.Interface.AspNet.Models
+@model TaskyJViewModel
+
+@{
+ViewBag.Title = "TaskyJ";
+}
+
+<div class="jumbotron">
+<h1>TaskyJ</h1>
+<p class="lead">Task detail</p>
+</div>
+@using (Html.BeginForm("Save", "TaskyJ"))
+{
+<div class="row">
+<div class="col-md-4">
+<p>
+<div class="col-md-10">
+	@Html.LabelFor(m => m.ID)
+	@Html.TextBoxFor(m => m.ID, new { @class = "form-control", @readonly = true })
+</div>
+<div class="col-md-10">
+	@Html.LabelFor(m => m.Name)
+	@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+	@Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+</div>
+<div class="col-md-10">
+	@Html.LabelFor(m => m.Description)
+	@Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+	@Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+</div>
+@if (Model.CreationDate != null)
+{
+	<div class="col-md-10">
+		@Html.LabelFor(m => m.CreationDate)
+		@Html.TextBoxFor(m => m.CreationDate, new { @class = "form-control", @readonly = "readonly", @Name = "" })
+	</div>
+	<div class="col-md-10">
+		<br />
+		@Html.LabelFor(m => m.Completed)
+		@Html.DropDownListFor(m => m.Completed,
+			new List<SelectListItem> {
+				new SelectListItem { Value = "0"  , Text = "0" },   new SelectListItem { Value = "5" , Text = "5" },
+				new SelectListItem { Value = "10" , Text = "10" }, new SelectListItem { Value = "15" , Text = "15" },
+				new SelectListItem { Value = "20" , Text = "20" }, new SelectListItem { Value = "25" , Text = "25" },
+				new SelectListItem { Value = "30" , Text = "30" }, new SelectListItem { Value = "35" , Text = "35" },
+				new SelectListItem { Value = "40" , Text = "40" }, new SelectListItem { Value = "45" , Text = "45" },
+				new SelectListItem { Value = "50" , Text = "50" }, new SelectListItem { Value = "55" , Text = "55" },
+				new SelectListItem { Value = "60" , Text = "60" }, new SelectListItem { Value = "65" , Text = "65" },
+				new SelectListItem { Value = "70" , Text = "70" }, new SelectListItem { Value = "75" , Text = "75" },
+				new SelectListItem { Value = "80" , Text = "80" }, new SelectListItem { Value = "85" , Text = "85" },
+				new SelectListItem { Value = "90" , Text = "90" }, new SelectListItem { Value = "95" , Text = "95" },
+				new SelectListItem { Value = "100", Text = "100" }
+				}, new { @class = "myselect" })
+	</div>
+}
+</p>
+</div>
+<div class="col-md-4">
+<h2>Actions</h2>
+<p><input type="submit" value="OK" /></p>
+<p><input type="reset" value="Reset" /></p>
+<p></p>
+<p>
+@( (Model.ID == 0 ) ? null : Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { @class = "btn btn-danger", @style = "color:white" }))
+</p>
+<p>
+@( (Model.ID == 0 ) ? null : Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-primary", @style = "color:white" }))
+</p>
+</div>
+<div class="col-md-4">
+<h2><!--col 3--></h2>
+</div>
+</div>
+}

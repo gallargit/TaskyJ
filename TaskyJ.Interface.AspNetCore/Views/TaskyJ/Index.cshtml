@@ -1,0 +1,34 @@
+﻿@using TaskyJ.Interface.AspNet.Models
+@model TaskyJListViewModel
+
+@{
+	ViewBag.Title = "TaskyJ";
+}
+
+<div class="jumbotron">
+	<h1>TaskyJ</h1>
+	<p class="lead">Task list</p>
+</div>
+@using (Html.BeginForm("Details", "TaskyJ"))
+{
+<div class="row">
+	<div class="col-md-4">
+		<br/>
+		<div class="col-md-10">
+			@Html.Raw("items: " + Model.TaskList.Count())
+
+			@Html.ListBoxFor(m => m.TaskList,
+				new MultiSelectList(Model.TaskList, "ID", "FullName"),
+				new { style = "display:block;" , onchange = "this.form.submit();" })
+			<p><input type="submit" value="Edit" /></p>
+		</div>        
+	</div>
+	<div class="col-md-4">
+		<h2>Actions</h2>
+		<p>@Html.ActionLink("Add New", "Details", "TaskyJ", new { id = 0, @class = "btn btn-primary", @style = "color:white" })</p>
+	</div>
+	<div class="col-md-4">
+		<h2><!--col 3--></h2>
+	</div>
+</div>
+}

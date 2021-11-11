@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TaskyJModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="TaskyJModelStoreContainer">
+    <EntitySet Name="TaskyJTable" EntityType="TaskyJModel.Store.TaskyJTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoryJTable" EntityType="TaskyJModel.Store.CategoryJTable" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CategoryJTableTaskyJTable" Association="TaskyJModel.Store.CategoryJTableTaskyJTable">
+      <End Role="CategoryJTable" EntitySet="CategoryJTable" />
+      <End Role="TaskyJTable" EntitySet="TaskyJTable" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TaskyJTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="Deadline" Type="datetime" Nullable="true" />
+    <Property Name="FinishDate" Type="datetime" Nullable="true" />
+    <Property Name="Priority" Type="tinyint" Nullable="false" />
+    <Property Name="Completed" Type="tinyint" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="IDCategory" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryJTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="IconBase64" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="CategoryJTableTaskyJTable">
+    <End Role="CategoryJTable" Type="TaskyJModel.Store.CategoryJTable" Multiplicity="1" />
+    <End Role="TaskyJTable" Type="TaskyJModel.Store.TaskyJTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryJTable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TaskyJTable">
+        <PropertyRef Name="IDCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaskyJModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TaskyJEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="TaskyJTable" EntityType="TaskyJModel.TaskyJTable" />
+          <EntitySet Name="CategoryJTable" EntityType="TaskyJModel.CategoryJTable" />
+          <AssociationSet Name="CategoryJTableTaskyJTable" Association="TaskyJModel.CategoryJTableTaskyJTable">
+            <End Role="CategoryJTable" EntitySet="CategoryJTable" />
+            <End Role="TaskyJTable" EntitySet="TaskyJTable" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TaskyJTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" />
+          <Property Name="Deadline" Type="DateTime" Nullable="true" Precision="3" />
+          <Property Name="FinishDate" Type="DateTime" Nullable="true" />
+          <Property Name="Priority" Type="TaskyJModel.TaskPriority" Nullable="false" />
+          <Property Name="Completed" Type="Byte" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="IDCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="CategoryJTable" Relationship="TaskyJModel.CategoryJTableTaskyJTable" FromRole="TaskyJTable" ToRole="CategoryJTable" />
+        </EntityType>
+        <EntityType Name="CategoryJTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IconBase64" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TaskyJTables" Relationship="TaskyJModel.CategoryJTableTaskyJTable" FromRole="CategoryJTable" ToRole="TaskyJTable" />
+        </EntityType>
+        <EnumType Name="TaskPriority" UnderlyingType="Byte" a:ExternalTypeName="TaskyJ.Globals.Data.DataObjects.TaskPriority" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <Association Name="CategoryJTableTaskyJTable">
+          <End Type="TaskyJModel.CategoryJTable" Role="CategoryJTable" Multiplicity="1" />
+          <End Type="TaskyJModel.TaskyJTable" Role="TaskyJTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryJTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TaskyJTable">
+              <PropertyRef Name="IDCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TaskyJModelStoreContainer" CdmEntityContainer="TaskyJEntities">
+    <EntitySetMapping Name="TaskyJTable">
+      <EntityTypeMapping TypeName="IsTypeOf(TaskyJModel.TaskyJTable)">
+        <MappingFragment StoreEntitySet="TaskyJTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Completed" ColumnName="Completed" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryJTable">
+      <EntityTypeMapping TypeName="IsTypeOf(TaskyJModel.CategoryJTable)">
+        <MappingFragment StoreEntitySet="CategoryJTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IconBase64" ColumnName="IconBase64" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

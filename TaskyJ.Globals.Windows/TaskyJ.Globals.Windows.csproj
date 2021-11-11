@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>TaskyJ.Globals.Windows</AssemblyName>
+    <RootNamespace>TaskyJ.Globals.Windows</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskyJ.Globals.Data\TaskyJ.Globals.Data.csproj" />
+    <ProjectReference Include="..\TaskyJ.DataRepo.STSDB\TaskyJ.DataRepo.STSDB.csproj" />
+    <ProjectReference Include="..\TaskyJ.DataRepo.SQLite.Windows\TaskyJ.DataRepo.SQLite.Windows.csproj" />
+    <ProjectReference Include="..\TaskyJ.DataRepo.SqlSrv.Windows\TaskyJ.DataRepo.SqlSrv.Windows.csproj" />
+    <ProjectReference Include="..\TaskyJ.DataRepo.MongoDB\TaskyJ.DataRepo.MongoDB.csproj" />
+  </ItemGroup>
+</Project>

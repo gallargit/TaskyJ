@@ -1,0 +1,9 @@
+﻿<Application x:Class="TaskyJ.Interface.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TaskyJ.Interface.WPF"
+             Startup="Application_Startup">
+    <Application.Resources>
+        <BitmapImage x:Key="WindowIcon" UriSource="resources/taskyj.ico" />
+    </Application.Resources>
+</Application>
