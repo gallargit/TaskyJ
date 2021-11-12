@@ -45,4 +45,4 @@ Several database client implementations exist for several databases
 * `TaskyJ.DataRepo.STSDB`: repository implementation for STSDB
 ## License
 
-Released under the [MIT](License) license.
+Released under the [MIT](LICENSE) license.

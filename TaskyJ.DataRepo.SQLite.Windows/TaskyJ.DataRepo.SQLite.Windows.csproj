@@ -3,9 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="CategoryJRepositoryWinSQLite.cs~RF594e9c.TMP" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115.5" />
   </ItemGroup>
   <ItemGroup>

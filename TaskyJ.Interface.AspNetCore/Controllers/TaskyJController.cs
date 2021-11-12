@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using TaskyJ.Business;
 using TaskyJ.Globals.Data.DataObjects;
-using TaskyJ.Interface.AspNet.Models;
+using TaskyJ.Interface.AspNetCore.Models;
 
 namespace TaskyJ.Interface.AspNetCore.Controllers
 {
