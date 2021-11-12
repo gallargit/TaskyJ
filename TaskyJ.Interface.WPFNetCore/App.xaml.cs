@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -65,12 +64,12 @@ namespace TaskyJ.Interface.WPFNetCore
 
         ~App()
         {
-            //shut down database manually if debug
+            //shut down database manually if debugging
             if (Debugger.IsAttached)
             {
                 try
                 {
-                    var url = ConfigurationManager.AppSettings["STSDBHTTPBaseURL"] + "/die";
+                    var url = System.Configuration.ConfigurationManager.AppSettings["STSDBHTTPBaseURL"] + "/die";
                     new StreamReader(WebRequest.Create(url).GetResponse().GetResponseStream()).ReadToEnd();
                 }
                 catch

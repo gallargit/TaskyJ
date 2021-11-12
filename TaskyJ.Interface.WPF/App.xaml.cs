@@ -27,12 +27,12 @@ namespace TaskyJ.Interface.WPF
 
         ~App()
         {
-            //shut down database manually if debug
+            //shut down database manually if debuging
             if (Debugger.IsAttached)
             {
                 try
                 {
-                    var url = ConfigurationManager.AppSettings["STSDBHTTPBaseURL"] + "/die";
+                    var url = System.Configuration.ConfigurationManager.AppSettings["STSDBHTTPBaseURL"] + "/die";
                     new StreamReader(WebRequest.Create(url).GetResponse().GetResponseStream()).ReadToEnd();
                 }
                 catch
